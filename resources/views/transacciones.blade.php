@@ -1,9 +1,8 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Listado de transacciones</title>
+@extends('layouts.app')
+
+@section('titulo', 'Lista de transacciones')
+
+@section('contenido')
     <style>
         table {
             width: 100%;
@@ -21,8 +20,7 @@
             max-width: 800px;
         }
     </style>
-</head>
-<body>
+
     <div class="container">
         <h1>Listado de transacciones</h1>
         <table>
@@ -37,16 +35,16 @@
                 </tr>
             </thead>
             <tbody>
-                <?php foreach($datos as $dato): ?>
+                @foreach($datos as $dato)
                 <tr>
-                    <td><?= $dato['user_id'] ?></td>
-                    <td><?= $dato['description'] ?></td>
-                    <td><?= $dato['amount'] ?></td>
-                    <td><?= $dato['transaction_date'] ?></td>
-                    <td><?= $dato['created_at'] ?></td>
-                    <td><?= $dato['updated_at'] ?></td>
+                    <td>{{ $dato['user_id'] }}</td>
+                    <td>{{ $dato['description'] }}</td>
+                    <td>{{ $dato['amount'] }}</td>
+                    <td>{{ $dato['transaction_date'] }}</td>
+                    <td>{{ $dato['created_at'] }}</td>
+                    <td>{{ $dato['updated_at'] }}</td>
                 </tr>
-                <?php endforeach; ?>
+                @endforeach
             </tbody>
         </table>
     </div>
@@ -56,5 +54,4 @@
             console.log("Cargo la pagina");
         });
     </script>
-</body>
-</html>
+@endsection

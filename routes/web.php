@@ -4,11 +4,11 @@ use App\Http\Controllers\PruebaController;
 use App\Http\Controllers\TransaccionesController;
 use Illuminate\Support\Facades\Route;
 
-/*Route::get('/', function () {
+Route::get('/', function () {
     return view('welcome');
-});*/
+})->name('inicio');
 
-Route::get('/prueba', [PruebaController::class, 'index'])
+Route::get('/pagina-prueba', [PruebaController::class, 'index'])
     ->name('prueba.index');
 
 Route::get('/prueba2', [PruebaController::class, 'crear'])

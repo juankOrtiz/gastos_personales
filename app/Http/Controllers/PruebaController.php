@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 class PruebaController extends Controller
 {
     public function index() {
-        echo "Hola desde el controlador PruebaController";
+        return view('prueba');
     }
 
     public function crear() {
