@@ -23,6 +23,16 @@
             </div>
         @endif
 
+        {{-- Notificación de error --}}
+        @if(session('error'))
+            <div class="relative bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-6 flex justify-between items-center" role="alert">
+                <span class="block sm:inline">{{ session('error') }}</span>
+                <button type="button" class="text-red-700 hover:text-red-900 font-bold text-xl leading-none" onclick="this.parentElement.style.display='none';">
+                    &times; {{-- Esto es un carácter 'X' estilizado --}}
+                </button>
+            </div>
+        @endif
+
         @empty($datos)
             <p class="text-center text-gray-600 text-lg py-10">No existen transacciones actualmente</p>
         @else
@@ -48,6 +58,9 @@
                             <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
                                 Actualizado en
                             </th>
+                            <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                                Acciones
+                            </th>
                         </tr>
                     </thead>
                     <tbody>
@@ -70,6 +83,15 @@
                                 </td>
                                 <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                                     <p class="text-gray-900 whitespace-no-wrap">{{ $dato['updated_at'] }}</p>
+                                </td>
+                                <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                                    <a href="{{ route('transacciones.show', $dato['id']) }}">Ver</a>
+                                    <a href="{{ route('transacciones.edit', $dato['id']) }}">Editar</a>
+                                    <form action="{{ route('transacciones.destroy', $dato['id']) }}" method="POST" onsubmit="return confirm('Estas seguro que deseas eliminar la transaccion?')">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit">Eliminar</button>
+                                    </form>
                                 </td>
                             </tr>
                         @endforeach

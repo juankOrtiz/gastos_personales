@@ -22,13 +22,14 @@
         </div>
     @endif
 
-    <form action="{{ route('transacciones.store') }}" method="POST" class="bg-white shadow-md rounded-lg px-8 pt-6 pb-8 mb-4">
+    <form action="{{ route('transacciones.update', $transaccion['id']) }}" method="POST" class="bg-white shadow-md rounded-lg px-8 pt-6 pb-8 mb-4">
         @csrf
+        @method('PUT')
 
         {{-- Campo Descripción --}}
         <div class="mb-4">
             <label for="descripcion" class="block text-gray-700 text-sm font-bold mb-2">Descripción:</label>
-            <input type="text" name="descripcion" id="descripcion" value="{{ old('descripcion') }}" required
+            <input type="text" name="descripcion" id="descripcion" value="{{ old('descripcion', $transaccion['description']) }}" required
                    class="shadow appearance-none border rounded-lg w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline
                           @error('descripcion') border-red-500 @enderror">
             @error('descripcion')
@@ -39,7 +40,7 @@
         {{-- Campo Monto --}}
         <div class="mb-4">
             <label for="monto" class="block text-gray-700 text-sm font-bold mb-2">Monto:</label>
-            <input type="number" name="monto" id="monto" value="{{ old('monto') }}" required step="0.01" {{-- Agregado step para decimales --}}
+            <input type="number" name="monto" id="monto" value="{{ old('monto', $transaccion['amount']) }}" required step="0.01" {{-- Agregado step para decimales --}}
                    class="shadow appearance-none border rounded-lg w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline
                           @error('monto') border-red-500 @enderror">
             @error('monto')
@@ -50,7 +51,7 @@
         {{-- Campo Fecha de transacción --}}
         <div class="mb-6">
             <label for="fecha_transaccion" class="block text-gray-700 text-sm font-bold mb-2">Fecha transacción:</label>
-            <input type="date" name="fecha_transaccion" id="fecha_transaccion" value="{{ old('fecha_transaccion', '2025-06-10') }}" required
+            <input type="date" name="fecha_transaccion" id="fecha_transaccion" value="{{ old('fecha_transaccion', $transaccion['transaction_date']) }}" required
                    class="shadow appearance-none border rounded-lg w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline
                           @error('fecha_transaccion') border-red-500 @enderror">
             @error('fecha_transaccion')
@@ -64,7 +65,7 @@
                 Cancelar
             </a>
             <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg focus:outline-none focus:shadow-outline transition duration-300 ease-in-out">
-                Guardar transacción
+                Actualizar transacción
             </button>
         </div>
     </form>
