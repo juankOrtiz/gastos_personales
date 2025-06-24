@@ -9,5 +9,8 @@
         <li>
             <a href="{{ route('transacciones.index') }}" class="{{ request()->routeIs('transacciones.index') ? 'font-bold underline' : 'hover:underline' }}">Transacciones</a>
         </li>
+        <li>
+            <a href="{{ route('comprobantes.index') }}" class="{{ request()->routeIs('comprobantes.index') ? 'font-bold underline' : 'hover:underline' }}">Comprobantes</a>
+        </li>
     </ul>
 </nav>

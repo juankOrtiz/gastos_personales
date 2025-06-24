@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\PruebaController;
 use App\Http\Controllers\TransaccionesController;
+use App\Http\Controllers\ComprobantesController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -48,3 +49,6 @@ Route::resource('transacciones', TransaccionesController::class);
 // Definir las 7 rutas REST, excepto las 3 mencionadas
 //Route::resource('transacciones', TransaccionesController::class)
 //    ->except(['destroy', 'edit', 'update']);
+
+Route::resource('comprobantes', ComprobantesController::class)
+    ->except(['show', 'edit', 'update', 'destroy']);
