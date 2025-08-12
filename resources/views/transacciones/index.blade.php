@@ -41,7 +41,7 @@
                     <thead>
                         <tr>
                             <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                                ID de usuario
+                                ID de transaccion
                             </th>
                             <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
                                 Descripción
@@ -67,16 +67,16 @@
                         @foreach($datos as $dato)
                             <tr class="hover:bg-gray-50">
                                 <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                    <p class="text-gray-900 whitespace-no-wrap">{{ $dato['user_id'] }}</p>
+                                    <p class="text-gray-900 whitespace-no-wrap">{{ $dato['id'] }}</p>
                                 </td>
                                 <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                    <p class="text-gray-900 whitespace-no-wrap">{{ $dato['description'] }}</p>
+                                    <p class="text-gray-900 whitespace-no-wrap">{{ $dato['descripcion'] }}</p>
                                 </td>
                                 <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                    <p class="text-gray-900 whitespace-no-wrap">{{ $dato['amount'] }}</p>
+                                    <p class="text-gray-900 whitespace-no-wrap">{{ $dato['monto'] }}</p>
                                 </td>
                                 <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                    <p class="text-gray-900 whitespace-no-wrap">{{ $dato['transaction_date'] }}</p>
+                                    <p class="text-gray-900 whitespace-no-wrap">{{ $dato['fecha_transaccion '] }}</p>
                                 </td>
                                 <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                                     <p class="text-gray-900 whitespace-no-wrap">{{ $dato['created_at'] }}</p>

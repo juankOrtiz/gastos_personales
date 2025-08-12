@@ -3,7 +3,9 @@
 use App\Http\Controllers\PruebaController;
 use App\Http\Controllers\TransaccionesController;
 use App\Http\Controllers\ComprobantesController;
+use App\Models\Transaccion;
 use Illuminate\Support\Facades\Route;
+use Psy\Readline\Transient;
 
 Route::get('/', function () {
     return view('welcome');
@@ -52,3 +54,57 @@ Route::resource('transacciones', TransaccionesController::class);
 
 Route::resource('comprobantes', ComprobantesController::class)
     ->except(['show', 'edit', 'update', 'destroy']);
+
+Route::get('/test', function() {
+
+    // SELECT * FROM transacciones;
+    // $transacciones = Transaccion::all();
+
+    // Obtener un registro de la tabla
+    // $transaccion = Transaccion::find(2);
+
+    // Where
+    /*$transaccion = Transaccion::where('id', '>=', 1)
+        ->select('descripcion')
+        ->first();
+    dd($transaccion);*/
+
+    // INSERT: forma extensa
+    /*$transaccion = new Transaccion();
+    $transaccion->descripcion = 'Pague la luz';
+    $transaccion->monto = 50000;
+    $transaccion->fecha_transaccion = date('Y-m-d');
+    $transaccion->save();*/
+
+    // INSERT: forma corta
+    /*Transaccion::create([
+        'descripcion' => 'Pague el agua',
+        'monto' => 15000,
+        'fecha_transaccion' => date('Y-m-d'),
+    ]);
+    Transaccion::create([
+        'descripcion' => 'Pague el agua',
+        'monto' => 18000,
+        'fecha_transaccion' => date('Y-m-d'),
+    ]);
+    Transaccion::create([
+        'descripcion' => 'Pague el agua',
+        'monto' => 20000,
+        'fecha_transaccion' => date('Y-m-d'),
+    ]);*/
+
+    // UPDATE
+    /*Transaccion::where('id', 3)
+        ->update([
+            'monto' => 15000
+        ]);*/
+
+    // DELETE
+    Transaccion::destroy(3);
+    // Transaccion::where('id', '<', 10)->delete();
+
+    $transacciones = Transaccion::withTrashed()
+        ->where('id', 3)
+        ->forceDelete();
+    dd($transacciones);
+});
