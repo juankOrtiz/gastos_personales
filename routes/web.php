@@ -3,6 +3,7 @@
 use App\Http\Controllers\PruebaController;
 use App\Http\Controllers\TransaccionesController;
 use App\Http\Controllers\ComprobantesController;
+use App\Models\Categoria;
 use App\Models\Transaccion;
 use Illuminate\Support\Facades\Route;
 use Psy\Readline\Transient;
@@ -106,5 +107,29 @@ Route::get('/test', function() {
     $transacciones = Transaccion::withTrashed()
         ->where('id', 3)
         ->forceDelete();
+    dd($transacciones);
+});
+
+Route::get('/relaciones', function() {
+    // Leer la primera transaccion con su categoria
+    /*$transaccion = Transaccion::find(1);
+    $categoria = $transaccion->categoria->nombre;
+    dd($transaccion, $categoria);*/
+
+    // Crear una transaccion y su categoria
+    /*$categoria = Categoria::where('nombre', 'Salidas')->first();
+
+    Transaccion::create([
+        'descripcion' => 'Salida con amigos',
+        'monto' => 50000,
+        'fecha_transaccion' => '2025-08-19',
+        'categoria_id' => $categoria->id,
+    ]);
+
+    dd(Transaccion::all());*/
+
+    // Obtener todas las transacciones JUNTO (with) con la relacion categoria (esta definida en el modelo Categoria)
+    $transacciones = Transaccion::with('categoria')->get();
+    // $categoria = $transaccion->categoria->nombre;
     dd($transacciones);
 });
