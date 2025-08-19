@@ -3,10 +3,8 @@
 use App\Http\Controllers\PruebaController;
 use App\Http\Controllers\TransaccionesController;
 use App\Http\Controllers\ComprobantesController;
-use App\Models\Categoria;
 use App\Models\Transaccion;
 use Illuminate\Support\Facades\Route;
-use Psy\Readline\Transient;
 
 Route::get('/', function () {
     return view('welcome');
