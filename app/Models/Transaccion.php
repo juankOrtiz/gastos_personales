@@ -5,10 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
+// Importar el trait HasFactory para poder usarlo
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Transaccion extends Model
 {
-    use SoftDeletes;
+    // Indicar al modelo que puedes usar CategoriaFactory
+    use SoftDeletes, HasFactory;
     
     // Indicar a Laravel que la tabla relacionada se llama transacciones
     protected $table = 'transacciones';
