@@ -22,6 +22,7 @@ class DatabaseSeeder extends Seeder
 
         // Ejecutar todos los seeders una sola vez
         $this->call([
+            DatosInicialesSeeder::class,
             CategoriaSeeder::class,
             TransaccionSeeder::class,
         ]);
