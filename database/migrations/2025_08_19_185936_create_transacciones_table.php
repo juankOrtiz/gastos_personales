@@ -17,6 +17,8 @@ return new class extends Migration
             $table->decimal('monto', 10, 2);   // monto DECIMAL(10, 2)
             $table->date('fecha_transaccion'); // fecha_transaccion DATE
             $table->foreignId('categoria_id')->constrained();
+            $table->foreignId('grupo_id')->constrained();
+            $table->bigInteger('user_id')->nullable();
             // Si no sigo las convenciones, puedo definir la FK de la siguiente forma:
             // $table->foreign('categoria_id')->references('idcategoria')->on('categorias');
             $table->timestamps(); // created_at y updated_at (TIMESTAMPS)
