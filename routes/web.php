@@ -17,7 +17,7 @@ Route::get('/prueba2', [PruebaController::class, 'crear'])
     ->name('prueba.crear');
 
 // Muestra la pagina con el listado de transacciones
-/*Route::get('/transacciones', [TransaccionesController::class, 'index'])
+Route::get('/transacciones', [TransaccionesController::class, 'index'])
     ->name('transacciones.index');
 
 // Muestra la pagina con el formulario para crear una transaccion
@@ -42,10 +42,10 @@ Route::put('/transacciones/{transaccion}', [TransaccionesController::class, 'upd
 
 // Elimina una transaccion especifica
 Route::delete('/transacciones/{transaccion}', [TransaccionesController::class, 'destroy'])
-    ->name('transacciones.destroy');*/
+    ->name('transacciones.destroy');
 
 // Definir las 7 rutas REST
-Route::resource('transacciones', TransaccionesController::class);
+// Route::resource('transacciones', TransaccionesController::class);
 
 // Definir las 7 rutas REST, excepto las 3 mencionadas
 //Route::resource('transacciones', TransaccionesController::class)

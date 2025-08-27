@@ -12,7 +12,7 @@ class Transaccion extends Model
 {
     // Indicar al modelo que puedes usar CategoriaFactory
     use SoftDeletes, HasFactory;
-    
+
     // Indicar a Laravel que la tabla relacionada se llama transacciones
     protected $table = 'transacciones';
 
@@ -23,5 +23,9 @@ class Transaccion extends Model
     // Se llama en singular porque la relacion devuelve siempre 1 categoria
     public function categoria(): BelongsTo {
         return $this->belongsTo(Categoria::class);
+    }
+
+    public function grupo(): BelongsTo {
+        return $this->belongsTo(Grupo::class);
     }
 }
