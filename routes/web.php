@@ -3,6 +3,7 @@
 use App\Http\Controllers\PruebaController;
 use App\Http\Controllers\TransaccionesController;
 use App\Http\Controllers\ComprobantesController;
+use App\Http\Controllers\AuthController;
 use App\Models\Transaccion;
 use Illuminate\Support\Facades\Route;
 
@@ -131,3 +132,18 @@ Route::get('/relaciones', function() {
     // $categoria = $transaccion->categoria->nombre;
     dd($transacciones);
 });
+
+// RUTAS DE AUTENTICACION
+
+// 1) Ruta que muestre la pagina de login
+Route::get('/login', [AuthController::class, 'showLogin'])
+    ->name('login');
+
+// 2) Ruta que procese los datos del login
+Route::post('/login', [AuthController::class, 'storeLogin'])
+    ->name('login.store');
+
+// 3) Ruta que muestre el "panel de control" de la aplicacion
+Route::get('/dashboard', function() {
+    echo "Bienvenido al dashboard (esta zona es privada)";
+})->name('dashboard');
