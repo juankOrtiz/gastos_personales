@@ -147,3 +147,7 @@ Route::post('/login', [AuthController::class, 'storeLogin'])
 Route::get('/dashboard', function() {
     echo "Bienvenido al dashboard (esta zona es privada)";
 })->name('dashboard');
+
+// 4) Ruta para cerrar sesion
+Route::post('/logout', [AuthController::class, 'logout'])
+    ->name('logout');

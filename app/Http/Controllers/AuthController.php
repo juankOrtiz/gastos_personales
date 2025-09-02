@@ -30,4 +30,15 @@ class AuthController extends Controller
             ])->onlyInput('email');
         }
     }
+
+    public function logout(Request $request) {
+        // 1) Cerrar sesion
+        Auth::logout();
+        // 2) Invalidar la sesion
+        $request->session()->invalidate();
+        // 3) Regenerar el token CSRF
+        $request->session()->regenerateToken();
+        // 4) Redirigir al usuario
+        return redirect('/');
+    }
 }
