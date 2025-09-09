@@ -6,11 +6,14 @@ use App\Models\Categoria;
 use App\Models\Grupo;
 use App\Models\Transaccion;
 use Illuminate\Http\Request;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class TransaccionesController extends Controller
 {
+    use AuthorizesRequests;
+
     public function index() {
-        $transacciones = Transaccion::all();
+        $transacciones = Transaccion::where('user_id', auth()->user()->id)->get();
         return view('transacciones.index', compact('transacciones'));
     }
 
@@ -37,6 +40,7 @@ class TransaccionesController extends Controller
             'fecha_transaccion' => $request->input('fecha_transaccion'),
             'categoria_id' => $request->input('categoria'),
             'grupo_id' => $request->input('grupo'),
+            'user_id' => auth()->user()->id,
         ]);
 
         // 3) Redirigir a una nueva ruta con un mensaje
@@ -57,6 +61,9 @@ class TransaccionesController extends Controller
     }
 
     public function edit(Transaccion $transaccion) {
+        // Restringir el acceso solamente a los usuarios duenios de esta transaccion
+        $this->authorize('update', $transaccion);
+
         // 1) Si no existe, redirigir con error
         if(!$transaccion) {
             return redirect()
@@ -68,6 +75,9 @@ class TransaccionesController extends Controller
     }
 
     public function update(Request $request, Transaccion $transaccion) {
+        // Restringir el acceso solamente a los usuarios duenios de esta transaccion
+        $this->authorize('update', $transaccion);
+        
         // 1) Leer datos del formulario (se inyectan con la variable $request)
         // 2) Validar los datos
         $request->validate([

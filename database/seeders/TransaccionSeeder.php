@@ -7,6 +7,7 @@ use Illuminate\Database\Seeder;
 use App\Models\Transaccion;
 use App\Models\Categoria;
 use App\Models\Grupo;
+use App\Models\User;
 
 class TransaccionSeeder extends Seeder
 {
@@ -15,9 +16,10 @@ class TransaccionSeeder extends Seeder
      */
     public function run(): void
     {
-        // Leer las categoria existentes
+        // Obtener ID de los modelos
         $idsCategoria = Categoria::pluck('id');
         $idsGrupos= Grupo::pluck('id');
+        $idsUsuarios = User::pluck('id');
 
         Transaccion::factory()->count(100)->create([
             // Asignar a categoria_id uno de los ID existentes en la tabla categorias
@@ -26,6 +28,9 @@ class TransaccionSeeder extends Seeder
             },
             'grupo_id' => function() use ($idsGrupos) {
                 return fake()->randomElement($idsGrupos);
+            },
+            'user_id' => function() use ($idsUsuarios) {
+                return fake()->randomElement($idsUsuarios);
             }
         ]);
     }
