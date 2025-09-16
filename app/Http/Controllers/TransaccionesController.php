@@ -7,6 +7,7 @@ use App\Models\Grupo;
 use App\Models\Transaccion;
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use App\Notifications\TransaccionCreada;
 
 class TransaccionesController extends Controller
 {
@@ -34,7 +35,7 @@ class TransaccionesController extends Controller
             'grupo' => 'required',
         ]);
         // 2) Guardar los datos
-        Transaccion::create([
+        $transaccion = Transaccion::create([
             'descripcion' => $request->input('descripcion'),
             'monto' => $request->input('monto'),
             'fecha_transaccion' => $request->input('fecha_transaccion'),
@@ -43,7 +44,11 @@ class TransaccionesController extends Controller
             'user_id' => auth()->user()->id,
         ]);
 
-        // 3) Redirigir a una nueva ruta con un mensaje
+        // 3) Enviarme una notificacion sobre la nueva transaccion
+        $usuario = auth()->user();
+        $usuario->notify(new TransaccionCreada($transaccion));
+
+        // 4) Redirigir a una nueva ruta con un mensaje
         return redirect()
             ->route('transacciones.index')
             ->with('exito', 'Transaccion creada exitosamente.');

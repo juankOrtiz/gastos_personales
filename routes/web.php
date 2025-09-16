@@ -4,6 +4,7 @@ use App\Http\Controllers\PruebaController;
 use App\Http\Controllers\TransaccionesController;
 use App\Http\Controllers\ComprobantesController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\NotificationController;
 use App\Models\Transaccion;
 use Illuminate\Support\Facades\Route;
 
@@ -68,4 +69,7 @@ Route::middleware(['auth'])->group(function() {
     Route::get('/usuarios', function() {
         echo "Listado de usuarios";
     })->name('usuarios.index')->middleware(['can:ver-listado-usuarios']);
+
+    Route::post('/notifications/{notification}/read', NotificationController::class)
+        ->name('notifications.read');
 });
