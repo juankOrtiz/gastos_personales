@@ -8,6 +8,9 @@ use App\Models\Transaccion;
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use App\Notifications\TransaccionCreada;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\TransaccionCreadaMail;
+use App\Jobs\TransaccionCreadaJob;
 
 class TransaccionesController extends Controller
 {
@@ -47,6 +50,13 @@ class TransaccionesController extends Controller
         // 3) Enviarme una notificacion sobre la nueva transaccion
         $usuario = auth()->user();
         $usuario->notify(new TransaccionCreada($transaccion));
+
+        // 3.1) Enviar un mail al usuario
+        /* Mail::to(auth()->user()->email)
+            ->queue(new TransaccionCreadaMail($transaccion)); */
+
+        // 3.2) Enviamos un trabajo para ser procesado de forma asincrona
+        TransaccionCreadaJob::dispatch(auth()->user()->email, $transaccion);
 
         // 4) Redirigir a una nueva ruta con un mensaje
         return redirect()

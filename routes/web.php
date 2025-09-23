@@ -73,3 +73,8 @@ Route::middleware(['auth'])->group(function() {
     Route::post('/notifications/{notification}/read', NotificationController::class)
         ->name('notifications.read');
 });
+
+// Rutas de reseteo de contrasenia
+// 1 ruta para mostrar el formulario de envio de reseteo
+// 1 ruta para mostrar el formulario de reseteo de contrasenia
+// 1 ruta para confirmar la nueva contrasenia
