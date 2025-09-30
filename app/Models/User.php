@@ -46,4 +46,10 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    public function grupos(): BelongsToMany
+    {
+        return $this->belongsToMany(Grupo::class, 'grupo_miembro', 'user_id', 'grupo_id')
+                ->select('grupos.id');
+    }
 }

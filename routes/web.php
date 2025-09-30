@@ -7,6 +7,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\NotificationController;
 use App\Models\Transaccion;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\DashboardController;
 
 // Zona publica de la aplicacion
 Route::get('/', function () {
@@ -28,9 +29,8 @@ Route::post('/login', [AuthController::class, 'storeLogin'])
 // Zona privada de la aplicacion
 Route::middleware(['auth'])->group(function() {
     // Ruta que muestre el "panel de control" de la aplicacion
-    Route::get('/dashboard', function() {
-        echo "Bienvenido al dashboard (esta zona es privada)";
-    })->name('dashboard');
+    Route::get('/dashboard', [DashboardController::class, 'index'])
+        ->name('dashboard');
 
     // Ruta para cerrar sesion
     Route::post('/logout', [AuthController::class, 'logout'])
