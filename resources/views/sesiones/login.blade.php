@@ -57,6 +57,13 @@
                             Iniciar sesión
                         </button>
                     </div>
+
+                    <div class="mt-6 text-center text-sm">
+                        <a href="{{ route('password.request') }}"
+                            class="font-semibold text-blue-600 hover:text-blue-800 transition duration-300 ease-in-out">
+                            ¿Olvidaste tu contraseña?
+                        </a>
+                    </div>
                 </form>
             </div>
         </div>
