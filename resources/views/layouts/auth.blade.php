@@ -6,9 +6,7 @@
     <title>@yield('titulo', 'Mis Gastos Personales')</title>
     @vite(['resources/css/app.css'])
 </head>
-<body class="bg-green-100 text-gray-900">
-    <main class="container mx-auto mt-8">
-        @yield('contenido')
-    </main>
+<body class="text-gray-900">
+    @yield('contenido')
 </body>
 </html>

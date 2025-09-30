@@ -18,8 +18,10 @@ class AuthController extends Controller
             'password' => ['required'],
         ]);
 
+        $remember = $request->filled('remember');
+
         // 2) Preguntar si la combinacion de usuario y contrasenia es valida
-        if(Auth::attempt($credenciales)) {
+        if(Auth::attempt($credenciales, $remember)) {
             // Regenerar la sesion (esto crea la cookie en el navegador y la sesion en el servidor)
             $request->session()->regenerate();
             // Redirigir al usuario al dashboard
