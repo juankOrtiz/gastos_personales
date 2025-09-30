@@ -79,7 +79,18 @@
                         @foreach($transacciones as $transaccion)
                             <tr class="hover:bg-gray-50">
                                 <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                    <p class="text-gray-900 whitespace-no-wrap">{{ $transaccion['id'] }}</p>
+                                    {{-- Enlace de "Ver" --}}
+                                    <div class="flex items-center">
+                                        <p class="text-gray-900 whitespace-no-wrap">{{ $transaccion['id'] }}</p>
+                                        <a href="{{ route('transacciones.show', $transaccion->id) }}"
+                                            class="ml-2 text-blue-500 hover:text-blue-700" title="Ver detalle">
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
+                                                stroke="currentColor" class="w-4 h-4">
+                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                    d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0l-6.75 6.75M21 3v6.75" />
+                                            </svg>
+                                        </a>
+                                    </div>
                                 </td>
                                 <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                                     <p class="text-gray-900 whitespace-no-wrap">{{ $transaccion['descripcion'] }}</p>
@@ -96,14 +107,21 @@
                                 <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                                     <p class="text-gray-900 whitespace-no-wrap">{{ $transaccion['updated_at'] }}</p>
                                 </td>
-                                <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                    <a href="{{ route('transacciones.show', $transaccion->id) }}">Ver</a>
-                                    <a href="{{ route('transacciones.edit', $transaccion->id) }}">Editar</a>
+                                <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm flex gap-2 items-center">
+                                    {{-- Enlace de "Editar" --}}
+                                    <a href="{{ route('transacciones.edit', $transaccion->id) }}"
+                                        class="px-3 py-1 text-sm font-semibold rounded-full bg-green-100 text-green-800 hover:bg-green-200 transition-colors duration-200">
+                                        Editar
+                                    </a>
+                                    {{-- Botón de "Eliminar" --}}
                                     <form action="{{ route('transacciones.destroy', $transaccion->id) }}" method="POST"
-                                        onsubmit="return confirm('Estas seguro que deseas eliminar la transaccion?')">
+                                        onsubmit="return confirm('¿Estás seguro que deseas eliminar la transacción?')">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit">Eliminar</button>
+                                        <button type="submit"
+                                            class="px-3 py-1 text-sm font-semibold rounded-full bg-red-100 text-red-800 hover:bg-red-200 transition-colors duration-200 cursor-pointer">
+                                            Eliminar
+                                        </button>
                                     </form>
                                 </td>
                             </tr>
