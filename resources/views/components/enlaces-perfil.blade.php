@@ -1,8 +1,8 @@
 <div class="relative inline-block text-left" data-dropdown>
     <div>
-        <button type="button" class="flex items-center p-2 text-white hover:text-gray-600 focus:outline-none"
+        <button type="button" class="flex items-center p-2 text-white focus:outline-none"
             data-dropdown-button aria-haspopup="true" aria-expanded="true">
-            Usuario
+            {{ ucfirst(auth()->user()->name) }}
         </button>
     </div>
 
