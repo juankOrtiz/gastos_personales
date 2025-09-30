@@ -9,6 +9,7 @@ use App\Models\Transaccion;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UserController;
 
 // Zona publica de la aplicacion
 Route::get('/', function () {
@@ -73,9 +74,8 @@ Route::middleware(['auth'])->group(function() {
     Route::resource('comprobantes', ComprobantesController::class)
         ->except(['show', 'edit', 'update', 'destroy']);
 
-    Route::get('/usuarios', function() {
-        echo "Listado de usuarios";
-    })->name('usuarios.index')->middleware(['can:ver-listado-usuarios']);
+    Route::resource('usuarios', UserController::class)
+        ->middleware(['can:ver-listado-usuarios']);
 
     Route::post('/notifications/{notification}/read', NotificationController::class)
         ->name('notifications.read');
