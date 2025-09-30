@@ -11,7 +11,7 @@
         role="menu" aria-orientation="vertical" aria-labelledby="perfil-button">
         <div class="py-1" role="none">
             <div class="flex items-center justify-between px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
-                <a href="{{ route('dashboard') }}" class="w-full">Perfil</a>
+                <a href="{{ route('profile.index') }}" class="w-full">Perfil</a>
             </div>
             <div class="flex items-center justify-between px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
                 <form method="POST" action="{{ route('logout') }}" class="w-full">

@@ -17,6 +17,8 @@
     <main class="container mx-auto mt-8">
         @yield('contenido')
     </main>
+
+    @stack('scripts')
 </body>
 
 </html>

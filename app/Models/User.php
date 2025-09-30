@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Spatie\Permission\Traits\HasRoles;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class User extends Authenticatable
 {
@@ -51,5 +53,10 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Grupo::class, 'grupo_miembro', 'user_id', 'grupo_id')
                 ->select('grupos.id');
+    }
+
+    public function transacciones(): HasMany
+    {
+        return $this->hasMany(Transaccion::class, 'user_id', 'id');
     }
 }

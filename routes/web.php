@@ -8,6 +8,7 @@ use App\Http\Controllers\NotificationController;
 use App\Models\Transaccion;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ProfileController;
 
 // Zona publica de la aplicacion
 Route::get('/', function () {
@@ -31,6 +32,9 @@ Route::middleware(['auth'])->group(function() {
     // Ruta que muestre el "panel de control" de la aplicacion
     Route::get('/dashboard', [DashboardController::class, 'index'])
         ->name('dashboard');
+    
+    Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
+    Route::put('/profile', [ProfileController::class, 'update'])->name('profile.update');
 
     // Ruta para cerrar sesion
     Route::post('/logout', [AuthController::class, 'logout'])
