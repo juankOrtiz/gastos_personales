@@ -17,7 +17,7 @@ class TransaccionesController extends Controller
     use AuthorizesRequests;
 
     public function index() {
-        $transacciones = Transaccion::where('user_id', auth()->user()->id)->get();
+        $transacciones = Transaccion::where('user_id', auth()->user()->id)->paginate(8);
         return view('transacciones.index', compact('transacciones'));
     }
 

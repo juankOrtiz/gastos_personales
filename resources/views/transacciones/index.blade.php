@@ -111,6 +111,10 @@
                     </tbody>
                 </table>
             </div>
+
+            <div class="mt-6">
+                {{ $transacciones->links() }}
+            </div>
         @endempty
     </div>
     <script>
