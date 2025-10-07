@@ -1,11 +1,9 @@
 <?php
 
-use App\Http\Controllers\PruebaController;
 use App\Http\Controllers\TransaccionesController;
 use App\Http\Controllers\ComprobantesController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\NotificationController;
-use App\Models\Transaccion;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfileController;
@@ -82,7 +80,7 @@ Route::middleware(['auth'])->group(function() {
     // Ruta que muestre el "panel de control" de la aplicacion
     Route::get('/dashboard', [DashboardController::class, 'index'])
         ->name('dashboard');
-    
+
     Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
     Route::put('/profile', [ProfileController::class, 'update'])->name('profile.update');
 
@@ -129,8 +127,3 @@ Route::middleware(['auth'])->group(function() {
     Route::post('/notifications/{notification}/read', NotificationController::class)
         ->name('notifications.read');
 });
-
-// Rutas de reseteo de contrasenia
-// 1 ruta para mostrar el formulario de envio de reseteo
-// 1 ruta para mostrar el formulario de reseteo de contrasenia
-// 1 ruta para confirmar la nueva contrasenia
