@@ -127,3 +127,7 @@ Route::middleware(['auth'])->group(function() {
     Route::post('/notifications/{notification}/read', NotificationController::class)
         ->name('notifications.read');
 });
+
+Route::get('/prueba', function() {
+    echo "hola";
+});
